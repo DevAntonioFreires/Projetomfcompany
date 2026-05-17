@@ -8,7 +8,6 @@ export default function Collection({ onSelectProduct }) {
   return (
     <section className={styles.section} id="collection">
       <div className={styles.header}>
-        <img src="/img/mf-logo.png" alt="MF Company" className={styles.logoImg} />
         <span className={styles.label}>Produtos</span>
         <h2 className={styles.title}>Coleção Brasil 2026</h2>
         <p className={styles.sub}>Cada peça é uma declaração de amor ao futebol brasileiro.</p>
