@@ -1,0 +1,138 @@
+/* src/components/About/About.module.css */
+
+.section {
+  background: var(--off-black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 100px 24px;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* ── Text ── */
+.text {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.text.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.05;
+}
+
+.body {
+  color: var(--text-muted);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.85;
+  margin-bottom: 28px;
+}
+
+.igBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  padding: 12px 24px;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+.igBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ── Stats ── */
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.stats.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.stat {
+  padding: 24px 28px;
+  background: var(--dark);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    border-color var(--transition);
+}
+
+/* When parent .stats is .visible, reveal each stat */
+.stats.visible .stat {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat:hover {
+  border-color: var(--gold);
+}
+
+.statNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .text  { transform: none; }
+  .stats { transform: none; }
+}

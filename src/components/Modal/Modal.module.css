@@ -1,0 +1,219 @@
+/* src/components/Modal/Modal.module.css */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  backdrop-filter: blur(10px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.22s ease both;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  background: var(--off-black);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 900px;
+  width: 100%;
+  max-height: 92vh;
+  overflow: hidden;
+  position: relative;
+  animation: slideUp 0.28s cubic-bezier(0.4,0,0.2,1) both;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: scale(0.94) translateY(24px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* ── Close ── */
+.closeBtn {
+  position: absolute;
+  top: 14px; right: 14px;
+  z-index: 20;
+  background: rgba(0,0,0,0.65);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(4px);
+}
+.closeBtn:hover { background: #333; }
+
+/* ── Image panel ── */
+.imgPanel {
+  position: relative;
+  background: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.slides {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.slideActive { opacity: 1; }
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+.arrowLeft  { left: 10px; }
+.arrowRight { right: 10px; }
+.arrow:hover { background: rgba(255,255,255,0.18); }
+
+/* Thumbnails strip */
+.thumbs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #0a0a0a;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+.thumbs::-webkit-scrollbar { display: none; }
+
+.thumb {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  background: none;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.5;
+}
+.thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.thumbActive {
+  border-color: #fff;
+  opacity: 1;
+}
+.thumb:hover { opacity: 0.85; }
+
+/* ── Details panel ── */
+.details {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  gap: 0;
+}
+
+.colorTag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.name {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.price {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+.desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+.photoCount {
+  font-size: 0.75rem;
+  color: #555;
+  letter-spacing: 0.08em;
+  margin-bottom: 22px;
+}
+
+/* WhatsApp btn */
+.whatsappBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  padding: 15px 26px;
+  border-radius: 50px;
+  transition: var(--transition);
+}
+.whatsappBtn:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37,211,102,0.25);
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .modal {
+    grid-template-columns: 1fr;
+    grid-template-rows: 55vh 1fr;
+    max-height: 96vh;
+  }
+  .details {
+    padding: 22px 20px 28px;
+  }
+  .name  { font-size: 1.6rem; }
+  .price { font-size: 1.5rem; }
+}
